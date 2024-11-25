@@ -1,12 +1,17 @@
 const express = require("express");
 // Utilizando dotenv para variables de entorno
 require("dotenv").config();
+// Configuración de base de datos
+const { dbConnection } = require("./database/config");
 
 // Desestructurando variables de entorno
 const { LOCALPORT } = process.env;
 
 // Instanciando la app de express (Esto es mi servidor)
 const app = express();
+
+// Base de datos
+dbConnection()
 
 // Middleware
 app.use(express.static("public"));
