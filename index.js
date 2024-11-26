@@ -3,6 +3,8 @@ const express = require("express");
 require("dotenv").config();
 // Configuración de base de datos
 const { dbConnection } = require("./database/config");
+// Importando CORS
+const cors = require("cors");
 
 // Desestructurando variables de entorno
 const { LOCALPORT } = process.env;
@@ -12,6 +14,9 @@ const app = express();
 
 // Base de datos
 dbConnection()
+
+// CORS
+app.use(cors())
 
 // Middleware
 app.use(express.static("public"));

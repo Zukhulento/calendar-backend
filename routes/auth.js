@@ -12,6 +12,7 @@ const {
   revalidarUsuario,
 } = require("../controllers/auth");
 const { validarCampos } = require("../middlewares/validarCampos")
+const { validarJWT } = require("../middlewares/validarJWT")
 
 // Utilizando router para poder definir rutas en vez de app
 // Registro de usuario
@@ -42,7 +43,7 @@ router.post(
   loginUsuario
 );
 // Renovar token
-router.get("/renew", revalidarUsuario);
+router.get("/renew", validarJWT ,revalidarUsuario);
 
 // Exportando para poder utilizarlo en el index.js
 module.exports = router;
