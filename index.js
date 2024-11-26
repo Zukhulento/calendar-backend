@@ -13,10 +13,10 @@ const { LOCALPORT } = process.env;
 const app = express();
 
 // Base de datos
-dbConnection()
+dbConnection();
 
 // CORS
-app.use(cors())
+app.use(cors());
 
 // Middleware
 app.use(express.static("public"));
@@ -28,6 +28,7 @@ app.use(express.json());
 // auth
 app.use("/api/auth", require("./routes/auth"));
 // CRUD: Eventos
+app.use("/api/events", require("./routes/events"));
 
 // Manteniendo servidor activo y configurado en el puerto dado
 app.listen(LOCALPORT, () => {
