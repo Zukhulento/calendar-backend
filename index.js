@@ -31,6 +31,6 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/events", require("./routes/events"));
 
 // Manteniendo servidor activo y configurado en el puerto dado
-app.listen(LOCALPORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
