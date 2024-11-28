@@ -1,6 +1,7 @@
 const { response } = require("express");
 const jwt = require("jsonwebtoken");
 
+// Este middleware incluye la validación del token
 const validarJWT = (req, res = response, next) => {
   const token = req.header("x-token");
   if (!token) {
@@ -11,6 +12,7 @@ const validarJWT = (req, res = response, next) => {
   }
   try {
     const { uid, name } = jwt.verify(token, process.env.SECRET_JWT_SEED);
+    // Agregando uid y name al request
     req.uid = uid;
     req.name = name;
   } catch (error) {

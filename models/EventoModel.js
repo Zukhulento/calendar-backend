@@ -3,27 +3,33 @@ const { Schema, model } = require("mongoose");
 const EventoSchema = Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   notes: {
     type: String,
-    require: true,
   },
   start: {
     type: String,
-    require: true,
+    required: true,
   },
   end: {
     type: String,
-    require: true,
+    required: true,
   },
   bgColor: {
     type: String,
-    require: true,
   },
   user: {
-    id: {type:String, require:true},
-    name: {type:String, require:true}
+    type: Schema.Types.ObjectId,
+    ref: "Usuario",
+    required: true,
   },
+});
+//? Esto me sirve para establecer el formato de mi modelo sin afectar la bd
+// Utilizando el método toJSON para modificar la respuesta
+EventoSchema.method("toJSON", function () {
+  const { __v, _id, ...object } = this.toObject();
+  object.id = _id;
+  return object;
 });
 module.exports = model("Evento", EventoSchema);
