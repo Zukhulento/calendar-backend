@@ -7,7 +7,7 @@ const { dbConnection } = require("./database/config");
 const cors = require("cors");
 
 // Desestructurando variables de entorno
-const { LOCALPORT } = process.env;
+const { PORT } = process.env;
 
 // Instanciando la app de express (Esto es mi servidor)
 const app = express();
@@ -32,5 +32,5 @@ app.use("/api/events", require("./routes/events"));
 
 // Manteniendo servidor activo y configurado en el puerto dado
 app.listen(LOCALPORT, () => {
-  console.log(`Server running on port ${LOCALPORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
