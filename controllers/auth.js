@@ -83,7 +83,7 @@ const revalidarUsuario = async (req, res = response) => {
     const { uid, name } = req;
     // Generar JWT
     const token = await generarJWT(uid, name);
-    res.json({ ok: true, token });
+    res.json({ ok: true, uid, name, token });
   } catch (error) {
     res
       .status(500)
