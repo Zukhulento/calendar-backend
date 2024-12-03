@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 // Utilizando dotenv para variables de entorno
 require("dotenv").config();
 // Configuración de base de datos
@@ -29,6 +30,11 @@ app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
 // CRUD: Eventos
 app.use("/api/events", require("./routes/events"));
+
+// Redirigiendo a React en caso de no ser las rutas previas
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // Manteniendo servidor activo y configurado en el puerto dado
 app.listen(PORT, () => {
